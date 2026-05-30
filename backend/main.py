@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Any
 
+from deterministic_checks import run_all_checks
+
 app = FastAPI()
 
 app.add_middleware(
@@ -15,7 +17,7 @@ app.add_middleware(
 
 # Load static data once at startup — not per request
 with open("/project/registry/supplier_public_keys.json") as f:
-    SUPPLIER_KEYS: dict = json.load(f)
+    SUPPLIER_KEYS: dict = json.load(f)["keys"]
 
 with open("/project/registry/anchor_registry.json") as f:
     _registry = json.load(f)
@@ -46,14 +48,13 @@ class VerifyResponse(BaseModel):
 
 @app.post("/verify", response_model=VerifyResponse)
 def verify(body: VerifyRequest):
-    # TODO: implement verification logic
-    return VerifyResponse(
+    result = run_all_checks(
         product_attestation_id=body.product_attestation_id,
-        canadian_content_percentage=0.0,
-        designation="none",
-        chain_valid=False,
-        anomalies=[],
+        attestations=body.attestations,
+        public_keys=SUPPLIER_KEYS,
+        anchor_registry=ANCHOR_REGISTRY,
     )
+    return VerifyResponse(**result)
 
 
 @app.get("/health")
