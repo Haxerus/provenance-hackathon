@@ -1,0 +1,6 @@
+tests
+docs
+.git
+__pycache__
+*.pyc
+training_corpus.jsonl

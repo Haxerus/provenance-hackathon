@@ -1,0 +1,7 @@
+services:
+  verifier:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - STORE_BACKEND=memory

@@ -20,6 +20,7 @@ Everything you need to build your submission. **Read [`CHALLENGE.md`](CHALLENGE.
 ## Quick start
 
 ```bash
+pip install -r requirements.txt                      # backend dependencies
 pip install -r reference_lib/requirements.txt        # cryptography
 python3 -m reference_lib.tests.test_golden           # confirm byte-exact core
 
@@ -30,6 +31,31 @@ cat worked-example/recovery_drone_expected.json      # valid, 58.4%, made_in_can
 # once your backend is up (serve /verify on port 8000):
 python3 self_test.py http://localhost:8000/verify
 ```
+
+## Backend
+
+Run the FastAPI verifier with Docker:
+
+```bash
+docker compose up --build
+```
+
+This serves `POST /verify` on port `8000`.
+
+Development commands:
+
+```bash
+python -m pytest -q
+python scripts/fit_model.py
+```
+
+API surface:
+
+- `POST /verify` - graded stateless verification contract.
+- `GET /api/suppliers`, `POST /api/attestations`, `GET /api/attestations`, `GET /api/attestations/{id}` - supplier flow.
+- `GET /api/products`, `GET /api/products/{id}` - purchaser lookup with chain, verification, graph, and designation detail.
+- `POST /api/canonicalize`, `GET /api/registry/keys`, `GET /api/registry/anchors/{id}`, `GET /health`.
+- OpenAPI schema at `/openapi.json`; interactive docs at `/docs`.
 
 ## Training data format
 
