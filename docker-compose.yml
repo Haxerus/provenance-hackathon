@@ -5,12 +5,10 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
-      - ./registry:/app/registry:ro
-      - ./private_keys:/app/private_keys:ro
-      - ./reference_lib:/app/reference_lib:ro
-      - ./training_corpus.jsonl:/app/training_corpus.jsonl:ro
+      - .:/project:ro
     environment:
       - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/project
 
   frontend:
     build: ./frontend

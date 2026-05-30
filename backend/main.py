@@ -14,10 +14,10 @@ app.add_middleware(
 )
 
 # Load static data once at startup — not per request
-with open("/app/registry/supplier_public_keys.json") as f:
+with open("/project/registry/supplier_public_keys.json") as f:
     SUPPLIER_KEYS: dict = json.load(f)
 
-with open("/app/registry/anchor_registry.json") as f:
+with open("/project/registry/anchor_registry.json") as f:
     _registry = json.load(f)
     # Build lookup: attestation_id -> {content_hash, product_id}
     ANCHOR_REGISTRY: dict = {
