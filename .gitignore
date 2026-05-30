@@ -31,3 +31,8 @@ logs/
 
 # OS
 desktop.ini
+
+# Frontend
+node_modules/
+dist/
+.next/

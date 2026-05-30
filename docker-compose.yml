@@ -5,3 +5,12 @@ services:
       - "8000:8000"
     environment:
       - STORE_BACKEND=memory
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - verifier
+    volumes:
+      - ./frontend/src:/app/src
