@@ -1,0 +1,49 @@
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--color-muted);
+}
+
+.verified .dot {
+  background: var(--ok);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 18%, transparent);
+}
+.invalid .dot {
+  background: var(--bad);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--bad) 18%, transparent);
+}
+.verifying .dot {
+  background: var(--color-muted);
+  animation: pulse 1.4s var(--ease-out) infinite;
+}
+
+.label {
+  line-height: 1;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .verifying .dot {
+    animation: none;
+  }
+}

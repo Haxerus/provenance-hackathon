@@ -1,0 +1,54 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+}
+
+/* Scrolled: bar goes transparent, the tab group becomes a floating island */
+.scrolled {
+  background: transparent;
+  border-bottom-color: transparent;
+  pointer-events: none;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+  padding: var(--s-1);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.scrolled .pill {
+  pointer-events: auto;
+  background: color-mix(in srgb, var(--color-bg) 78%, transparent);
+  backdrop-filter: blur(12px);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-pop);
+}
+
+.tab {
+  padding: var(--s-2) var(--s-4);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-muted);
+  transition: color var(--dur) var(--ease-out), background var(--dur) var(--ease-out);
+}
+.tab:hover {
+  color: var(--color-ink);
+  background: var(--color-surface);
+}
+.active {
+  color: var(--color-ink);
+  background: var(--color-surface-2);
+}

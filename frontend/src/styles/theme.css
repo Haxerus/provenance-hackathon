@@ -1,0 +1,217 @@
+/* ProvenanceChain design tokens — see DESIGN.md
+   Vercel/Linear fusion: grayscale chrome, colour rationed to signal. */
+
+:root {
+  /* Base grayscale ramp */
+  --color-bg: #ffffff;
+  --color-surface: #f8f9fb;
+  --color-surface-2: #f1f3f7;
+  --color-canvas: #ebebeb;
+  --color-border: #e2e4ed;
+  --color-border-mid: #c8cade;
+  --color-ink: #0f1117;
+  --color-muted: #5e6478;   /* AA on surface (~5.5:1) — safe for text incl. placeholders */
+  --color-faint: #b0b3c6;   /* non-text only: disabled affordances, hairline decoration */
+
+  /* Node type accents — graph only (swatch + label) */
+  --type-raw: #1b3a6b;
+  --type-component: #2d7d46;
+  --type-subassembly: #9b6800;
+  --type-final: #0f1117;
+
+  /* Anomaly / attack — graph only (border + tint) */
+  --crit-border: #c8202c;
+  --crit-tint: #fff1f2;
+  --warn-border: #b45309;
+  --warn-tint: #fffbeb;
+  --subtle-border: #6d28d9;
+  --subtle-tint: #faf8ff;
+
+  /* Verification verdict — the one semantic colour outside the graph */
+  --ok: #2da44e;
+  --bad: #c8202c;
+
+  /* Edges */
+  --edge: #c8cade;
+  --edge-hover: #9396a8;
+  --edge-tampered: #c8202c;
+
+  /* Spacing (4px base) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-12: 48px;
+  --s-16: 64px;
+
+  /* Radii */
+  --r-input: 8px;
+  --r-pill: 8px;
+  --r-node: 10px;
+  --r-card: 12px;
+
+  /* Layout */
+  --nav-h: 60px;
+  --header-h: 80px;
+  --panel-w: 340px;
+
+  /* Typography */
+  --font-ui: "Inter Variable", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Elevation */
+  --shadow-node-hover: 0 4px 16px rgba(15, 17, 23, 0.08);
+  --shadow-ring: 0 0 0 3px rgba(15, 17, 23, 0.12);
+  --shadow-pop: 0 8px 28px rgba(15, 17, 23, 0.12);
+  --shadow-card: 0 1px 2px rgba(15, 17, 23, 0.04);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 120ms;
+  --dur: 180ms;
+  --dur-slow: 240ms;
+
+  /* Z-index scale (semantic) */
+  --z-dropdown: 1000;
+  --z-sticky: 1100;
+  --z-modal-backdrop: 1200;
+  --z-modal: 1300;
+  --z-toast: 1400;
+  --z-tooltip: 1500;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#root {
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+/* Type utilities */
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "ss01";
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.u-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.u-muted {
+  color: var(--color-muted);
+}
+
+/* Visually hidden but available to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus ring — applied to all interactive elements via :focus-visible */
+:where(a, button, input, select, textarea, [tabindex], [role="button"]):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-ink);
+  border-radius: 6px;
+}
+
+/* Shared entrance keyframes (global names, referenced from CSS modules).
+   All are auto-neutralized by the reduced-motion block below. */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

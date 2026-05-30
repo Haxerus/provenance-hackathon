@@ -1,0 +1,38 @@
+.purchaser,
+.supplier {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.split {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.side {
+  width: var(--panel-w);
+  flex: none;
+  border-left: 1px solid var(--color-border);
+  background: var(--color-bg);
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .split {
+    flex-direction: column;
+  }
+  /* verdict-led on mobile: summary + detail sit above the graph */
+  .side {
+    order: -1;
+    width: 100%;
+    border-left: none;
+    border-bottom: 1px solid var(--color-border);
+    overflow-y: visible;
+  }
+  .split :global(.react-flow) {
+    min-height: 56vh;
+  }
+}

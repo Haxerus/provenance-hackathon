@@ -1,0 +1,21 @@
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+  display: inline-block;
+}
+
+.critical {
+  background: var(--crit-border);
+}
+
+.warning {
+  border: 1.5px solid var(--warn-border);
+  background: linear-gradient(to right, var(--warn-border) 0 50%, transparent 50% 100%);
+}
+
+.subtle {
+  border: 1.5px solid var(--subtle-border);
+  background: transparent;
+}

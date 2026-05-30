@@ -1,0 +1,50 @@
+.wrap {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  background: var(--color-canvas);
+}
+
+/* React Flow surface + chrome, themed to the grayscale system */
+.wrap :global(.react-flow) {
+  background: var(--color-canvas);
+}
+.wrap :global(.react-flow__node) {
+  font-family: var(--font-ui);
+  /* opacity only — never transform, React Flow owns the node's transform for positioning */
+  animation: fadeIn 0.32s var(--ease-out) both;
+}
+.wrap :global(.react-flow__edge) {
+  animation: fadeIn 0.5s var(--ease-out) both;
+}
+/* our ProvenanceNode owns selection styling; neutralize the library default */
+.wrap :global(.react-flow__node.selected) {
+  box-shadow: none;
+}
+.wrap :global(.react-flow__handle) {
+  cursor: default;
+}
+.wrap :global(.react-flow__controls) {
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.wrap :global(.react-flow__controls-button) {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-ink);
+}
+.wrap :global(.react-flow__controls-button:hover) {
+  background: var(--color-surface);
+}
+.wrap :global(.react-flow__controls-button svg) {
+  fill: var(--color-ink);
+}
+.wrap :global(.react-flow__attribution) {
+  background: transparent;
+  font-size: 10px;
+}
+.wrap :global(.react-flow__attribution a) {
+  color: var(--color-faint);
+}

@@ -1,0 +1,96 @@
+.card {
+  position: sticky;
+  top: calc(var(--nav-h) + var(--s-4));
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-card);
+}
+
+.kicker {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.node {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-3);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-node);
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  flex: none;
+}
+.type {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.country {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  font-size: 11px;
+  color: var(--color-muted);
+}
+.dotFilled,
+.dotHollow {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: none;
+}
+.dotFilled {
+  background: var(--color-faint);
+}
+.dotHollow {
+  border: 1.5px solid var(--color-faint);
+}
+.title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.meta {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin: 0;
+}
+.fact {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font-size: 12px;
+}
+.factLabel {
+  color: var(--color-muted);
+}
+.factValue {
+  color: var(--color-ink);
+  text-align: right;
+}
